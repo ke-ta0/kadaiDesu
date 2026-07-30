@@ -89,7 +89,7 @@ int main()
   */
   // 行動の組み合わせ判定
 
-// ① 両者攻撃
+// 両者攻撃
         if (ActionChoose == 0 && EnemyAction == 0)
         {
             int myAtk = character->Attack(Enemy); 
@@ -112,8 +112,6 @@ int main()
                 std::cout << "攻撃力が同じ！何も起きない！\n";
             }
 
-            // このターンは終了
-            continue;
         }
 
 
@@ -146,6 +144,7 @@ int main()
         std::cout << "自陣の残り戦力: " << me.GetHP() << std::endl;
         std::cout << "敵陣の残り戦力: " << enemy.GetHP() << std::endl;
     }
+
     // 勝った場合
     if (me.GetHP() <= 0)
     {
