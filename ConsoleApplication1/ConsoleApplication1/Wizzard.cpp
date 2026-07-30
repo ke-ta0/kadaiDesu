@@ -11,12 +11,12 @@ Wizzard::~Wizzard()
 
 }
 
-int Wizzard::Attack()
+int Wizzard::Attack(Character* enemy)
 {
 	return 0;
 }
 
-int Wizzard::Defense()
+int Wizzard::Defense(Character* enemy)
 {
 	return 0;
 }

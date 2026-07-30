@@ -10,12 +10,12 @@ Summoner::~Summoner()
 
 }
 
-int Summoner::Attack()
+int Summoner::Attack(Character* enemy)
 {
 	return 0;
 }
 
-int Summoner::Defense()
+int Summoner::Defense(Character* enemy)
 {
 	return 0;
 }

@@ -12,10 +12,15 @@ public:
 	// ダメージ計算
 	void Damage(int damage);
 
+
+	// キャラクターをランダムで選ぶ
 	Character* Random();
 
+	// 
+
+	// 配列でキャラクター3人
+	Character* member[3];
 private:
 	int HP;
-	Character* member[3];
 };
 

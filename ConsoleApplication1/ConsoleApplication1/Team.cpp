@@ -39,3 +39,9 @@ void Team::Damage(int damage)
     if (HP < 0)
        HP = 0;
 }
+
+int Team::GetHP() const
+{
+    return HP;
+}
+
