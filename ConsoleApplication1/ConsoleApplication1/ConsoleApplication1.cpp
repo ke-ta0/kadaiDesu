@@ -81,10 +81,72 @@ int main()
         int EnemyAction = 0;
         EnemyAction = rand() % 2;
 
+   /*
+        if (ActionChoose == 0 && EnemyAction == 0)
+        {
+
+        }
+  */
+  // 行動の組み合わせ判定
+
+// ① 両者攻撃
+        if (ActionChoose == 0 && EnemyAction == 0)
+        {
+            int myAtk = character->Attack(Enemy); 
+            int enemyAtk = Enemy->Attack(character); 
+
+            if (myAtk > enemyAtk)
+            {
+                enemy.Damage(myAtk);
+                std::cout << "あなたの攻撃が勝った！敵に "
+                    << (myAtk) << " ダメージ！\n";
+            }
+            else if (enemyAtk > myAtk)
+            {
+                me.Damage(enemyAtk);
+                std::cout << "敵の攻撃が勝った！あなたは "
+                    << (enemyAtk) << " ダメージ！\n";
+            }
+            else
+            {
+                std::cout << "攻撃力が同じ！何も起きない！\n";
+            }
+
+            // このターンは終了
+            continue;
+        }
+
+
+        // 自分攻撃 × 敵防御
+        if (ActionChoose == 0 && EnemyAction == 1)
+        {
+            int dmg = Enemy->Defense(character);  // 敵の防御処理
+            enemy.Damage(dmg);
+
+            std::cout << "敵が防御！敵に " << dmg << " ダメージ！\n";
+        }
+
+
+        // 自分防御 × 敵攻撃
+        if (ActionChoose == 1 && EnemyAction == 0)
+        {
+            int dmg = character->Defense(Enemy);  // 自分の防御処理
+            me.Damage(dmg);
+
+            std::cout << "あなたが防御！あなたは " << dmg << " ダメージ！\n";
+        }
+
+
+        // 両者防御
+        if (ActionChoose == 1 && EnemyAction == 1)
+        {
+            std::cout << "両者防御！何も起きない！\n";
+        }
+
         std::cout << "自陣の残り戦力: " << me.GetHP() << std::endl;
         std::cout << "敵陣の残り戦力: " << enemy.GetHP() << std::endl;
     }
-    // 買った場合
+    // 勝った場合
     if (me.GetHP() <= 0)
     {
         std::cout << "私たちの負けです"<<std::endl;
@@ -94,6 +156,6 @@ int main()
     {
         std::cout << "勝ちました!" << std::endl;
     }
-
+    std::cout << "ゲーム終了までのターン" << TurnCount << std::endl;
     return 0;
 }

@@ -18,28 +18,17 @@ Sowrd::~Sowrd()
 // UŒ‚ˆ—
 int Sowrd::Attack(Character *enemy)
 {
-	// UŒ‚æ‚ª¢Š«m‚Ìê‡
-	if (dynamic_cast<Summoner*>(enemy))
-	{
-		return attack * 2;
-	}
-	// UŒ‚æ‚ª–‚–@g‚¢‚Ìê‡
-	if (dynamic_cast<Wizzard*>(enemy))
-	{
-		// ©•ª‚ªH‚ç‚¤‚©‚ç-
-		return -(attack * 2);
-	}
 	return attack;
 }
 // –hŒäˆ—
 int Sowrd::Defense(Character* enemy)
 {
-	// –‚–@g‚¢‚ªUŒ‚‚µ‚Ä‚«‚½‚½ê‡
+	//¢Š«m‚ªUŒ‚‚µ‚Ä‚«‚½‚½ê‡
 	if (dynamic_cast<Summoner*>(enemy))
 	{
 		return enemy->GetAttack() * 2;
 	}
-	// ¢Š«m‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
+	// –‚–@g‚¢‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	if (dynamic_cast<Wizzard*>(enemy))
 	{
 		return -(enemy->GetAttack() * 2);
