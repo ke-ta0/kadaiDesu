@@ -1,4 +1,9 @@
 #include"Sowrd.h"
+#include"Wizzard.h"
+#include"Summoner.h"
+#include"Character.h"
+
+
 // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 Sowrd::Sowrd()
 {
@@ -11,13 +16,33 @@ Sowrd::~Sowrd()
 	
 }
 // UŒ‚ˆ—
-int Sowrd::Attack()
+int Sowrd::Attack(Character *enemy)
 {
-
-	return 0;
+	// UŒ‚æ‚ª¢Š«m‚Ìê‡
+	if (dynamic_cast<Summoner*>(enemy))
+	{
+		return attack * 2;
+	}
+	// UŒ‚æ‚ª–‚–@g‚¢‚Ìê‡
+	if (dynamic_cast<Wizzard*>(enemy))
+	{
+		// ©•ª‚ªH‚ç‚¤‚©‚ç-
+		return -(attack * 2);
+	}
+	return attack;
 }
 // –hŒäˆ—
-int Sowrd::Defense()
+int Sowrd::Defense(Character* enemy)
 {
+	// –‚–@g‚¢‚ªUŒ‚‚µ‚Ä‚«‚½‚½ê‡
+	if (dynamic_cast<Summoner*>(enemy))
+	{
+		return enemy->GetAttack() * 2;
+	}
+	// ¢Š«m‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
+	if (dynamic_cast<Wizzard*>(enemy))
+	{
+		return -(enemy->GetAttack() * 2);
+	}
 	return 0;
 }

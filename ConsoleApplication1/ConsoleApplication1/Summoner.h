@@ -9,6 +9,6 @@ public:
 	~Summoner();
 
 	// ƒˆ‰¼‘zŠÖ”Ä’è‹`
-	int Attack() override;
-	int Defense() override;
+	int Attack(Character* enemy) override;
+	int Defense(Character* enemy) override;
 };
