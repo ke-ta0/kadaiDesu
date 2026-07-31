@@ -28,7 +28,7 @@ int Summoner::Defense(Character* enemy)
 	// –‚–@g‚¢‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	else if (dynamic_cast<Wizzard*>(enemy))
 	{
-		return -(attack)* 2;
+		return -(enemy->GetAttack() * 2);
 	}
 	// ¢Š«m“¯m‚Ìê‡
 	else

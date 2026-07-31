@@ -24,7 +24,7 @@ int Wizzard::Defense(Character* enemy)
 	if (dynamic_cast<Sowrd*>(enemy))
 	{
 		// Œ•m‚ÌUŒ‚—Í‚ğ•Ô‚·
-		return -(attack* 2);
+		return - (enemy->GetAttack() * 2);
 	}
 	// ¢Š«m‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	else if (dynamic_cast<Summoner*>(enemy))
