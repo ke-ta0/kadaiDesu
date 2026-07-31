@@ -34,15 +34,7 @@ Character* Team::Random()
 // ƒ_ƒ[ƒW‚ğí—Í‚É”½‰f
 void Team::Damage(int damage)
 {
-    if (damage < 0)
-    {
-        HP += damage;
-    }
-    else 
-    {
         HP -= damage;
-    }
-  
 
     if (HP < 0)
        HP = 0;

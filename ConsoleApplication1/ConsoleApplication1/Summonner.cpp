@@ -23,12 +23,12 @@ int Summoner::Defense(Character* enemy)
 	// Œ•m‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	if (dynamic_cast<Sowrd*>(enemy))
 	{
-		return -(enemy->GetAttack() * 2);
+		return enemy->GetAttack() * 2;
 	}
 	// –‚–@g‚¢‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	else if (dynamic_cast<Wizzard*>(enemy))
 	{
-		return enemy->GetAttack() * 2;
+		return -(attack)* 2;
 	}
 	// ¢Š«m“¯m‚Ìê‡
 	else

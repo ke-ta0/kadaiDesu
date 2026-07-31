@@ -16,22 +16,24 @@ Sowrd::~Sowrd()
 	
 }
 // UŒ‚ˆ—
-int Sowrd::Attack(Character *enemy)
+int Sowrd::Attack(Character* enemy)
 {
+
 	return attack;
 }
 // –hŒäˆ—
 int Sowrd::Defense(Character* enemy)
 {
-	//¢Š«m‚ªUŒ‚‚µ‚Ä‚«‚½‚½ê‡
+	//¢Š«m‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	if (dynamic_cast<Summoner*>(enemy))
 	{
-		return enemy->GetAttack() * 2;
+		return -(enemy->GetAttack() * 2);
 	}
+
 	// –‚–@g‚¢‚ªUŒ‚‚µ‚Ä‚«‚½ê‡
 	if (dynamic_cast<Wizzard*>(enemy))
 	{
-		return -(enemy->GetAttack() * 2);
+		return enemy->GetAttack() * 2;
 	}
 	return 0;
 }

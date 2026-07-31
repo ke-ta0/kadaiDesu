@@ -36,16 +36,19 @@ int main()
         // それぞれの処理
         if (Choose == 0)
         {
+            // Teamからmember[0]のポインタをコピー
             character = me.member[0];
             std::cout << "剣士を選びました" << std::endl;
         }
         else if (Choose == 1)
         {
+            // Teamからmember[1]のポインタをコピー
             character = me.member[1];
             std::cout << "魔法使いを選びました" << std::endl;
         }
         else if (Choose == 2)
         {
+            // Teamからmember[2]のポインタをコピー
             character = me.member[2];
             std::cout << "召喚士を選びました" << std::endl;
         }
@@ -74,73 +77,100 @@ int main()
                 return 0;
         }
 
-        int EnemyChoose = 0;
-        EnemyChoose = rand() % 3;
-        Character* Enemy = enemy.member[EnemyChoose];
+        // 敵ランダム選択
+        Character* Enemy = enemy.Random();
 
         int EnemyAction = 0;
         EnemyAction = rand() % 2;
 
-   /*
-        if (ActionChoose == 0 && EnemyAction == 0)
+        // 敵キャラ名の表示
+        if (dynamic_cast<Sowrd*>(Enemy))
         {
-
+            std::cout << "敵は剣士を選んだ" << std::endl;
         }
-  */
+        else if (dynamic_cast<Wizzard*>(Enemy))
+        {
+            std::cout << "敵は魔法使いを選んだ！" << std::endl;
+        }
+        else if (dynamic_cast<Summoner*>(Enemy))
+        {
+            std::cout << "敵は召喚士を選んだ！" << std::endl;
+        }
+
+        // 敵の行動の表示
+        if (EnemyAction == 0)
+        {
+            std::cout << "敵は攻撃を選んだ！" << std::endl;
+        }
+        else
+        {
+            std::cout << "敵は防御を選んだ！" << std::endl;
+        }
   // 行動の組み合わせ判定
 
 // 両者攻撃
         if (ActionChoose == 0 && EnemyAction == 0)
         {
-            int myAtk = character->Attack(Enemy); 
+            // 
+            int MAtk = character->Attack(Enemy); 
             int enemyAtk = Enemy->Attack(character); 
-
-            if (myAtk > enemyAtk)
+            // ダメージ比較
+            if (MAtk > enemyAtk)
             {
-                enemy.Damage(myAtk);
-                std::cout << "あなたの攻撃が勝った！敵に "
-                    << (myAtk) << " ダメージ！\n";
+                enemy.Damage(MAtk);
+                std::cout << "私の攻撃力の方が上なので敵に "<< MAtk << " ダメージ"<<std::endl;
             }
-            else if (enemyAtk > myAtk)
+            else if (enemyAtk > MAtk)
             {
                 me.Damage(enemyAtk);
-                std::cout << "敵の攻撃が勝った！あなたは "
-                    << (enemyAtk) << " ダメージ！\n";
+                std::cout << "敵の攻撃力の方が上なのであなたに "<< enemyAtk << " ダメージ" << std::endl;
             }
             else
             {
-                std::cout << "攻撃力が同じ！何も起きない！\n";
+                std::cout << "ドロー"<<std::endl;
             }
 
         }
 
-
-        // 自分攻撃 × 敵防御
+        // 自分が攻撃で敵防御
         if (ActionChoose == 0 && EnemyAction == 1)
         {
-            int dmg = Enemy->Defense(character);  // 敵の防御処理
-            enemy.Damage(dmg);
+            // 敵の防御処理
+            int dmg = Enemy->Defense(character);
 
-            std::cout << "敵が防御！敵に " << dmg << " ダメージ！\n";
+            // 敵がダメージ
+            if (dmg >= 0)
+            {
+                enemy.Damage(dmg);  
+                std::cout << "敵に " << dmg << " ダメージ"<< std::endl;
+            }
+            else
+            {
+                me.Damage(-dmg);
+                std::cout << "カウンターくらった " << -dmg << " ダメージ" << std::endl;
+            }
         }
 
-
-        // 自分防御 × 敵攻撃
+        // 自分が防御で敵攻撃
         if (ActionChoose == 1 && EnemyAction == 0)
         {
-            int dmg = character->Defense(Enemy);  // 自分の防御処理
-            me.Damage(dmg);
+            // 自分の防御処理
+            int dmg = character->Defense(Enemy);  
 
-            std::cout << "あなたが防御！あなたは " << dmg << " ダメージ！\n";
+            if (dmg >= 0)
+            {
+                // 自分がダメージ
+                me.Damage(dmg); 
+                std::cout << "自分に" << dmg << " ダメージ"<< std::endl;
+            }
+            // カウンター処理
+            else
+            {
+                enemy.Damage(-dmg);  
+                std::cout << "カウンターで敵に " << -dmg << " ダメージ"<<std::endl;
+            }
         }
-
-
-        // 両者防御
-        if (ActionChoose == 1 && EnemyAction == 1)
-        {
-            std::cout << "両者防御！何も起きない！\n";
-        }
-
+        // ターン終了時点の残り戦力の表示
         std::cout << "自陣の残り戦力: " << me.GetHP() << std::endl;
         std::cout << "敵陣の残り戦力: " << enemy.GetHP() << std::endl;
     }
@@ -153,7 +183,7 @@ int main()
     // 負けた場合
     else
     {
-        std::cout << "勝ちました!" << std::endl;
+        std::cout << "勝ちました" << std::endl;
     }
     std::cout << "ゲーム終了までのターン" << TurnCount << std::endl;
     return 0;
